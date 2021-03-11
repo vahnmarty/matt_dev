@@ -26,7 +26,9 @@
                 </div>
                 <div class="grid grid-cols-3">
                     <div class="col-span-2">
-                        @include('includes.partials.errors')
+                        <div class="mb-4">
+                            @include('includes.partials.errors')
+                        </div>
                         <div class="space-y-6 sm:space-y-5">
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start">
                                 <label for="first_name"
@@ -67,8 +69,28 @@
 
                         </div>
                     </div>
-                    <div class="self-center">
-                        <div class="border-2 border-dashed w-32 h-32 mx-auto my-auto block"></div>
+                    <div class="self-center text-center">
+                        <div class="border-2 border-dashed w-32 h-32 mx-auto my-auto block">
+                            @if(!$image_url)
+                            <svg class="h-full w-full text-gray-300"
+                                 fill="currentColor"
+                                 viewBox="0 0 24 24">
+                                <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                            </svg>
+                            @else
+                            <img src="{{ url('storage/'.$image_url) }}"
+                                 class="object-fill w-32 h-32"
+                                 alt="">
+                            @endif
+                        </div>
+                        <label for="file-upload"
+                               class="mt-2 relative cursor-pointer bg-gray-100 rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                            <span>Upload a file</span>
+                            <input id="file-upload"
+                                   wire:model="profile_image"
+                                   type="file"
+                                   class="sr-only">
+                        </label>
                     </div>
                 </div>
             </div>

@@ -4,21 +4,32 @@ namespace App\Http\Livewire\Contacts;
 
 use Livewire\Component;
 use App\Models\Contact;
+use Livewire\WithFileUploads;
 
 class CreateContact extends Component
 {
+    use WithFileUploads;
+
     public $name, $email, $address, $profile_image;
+
+    public $image_url;
 
     protected $rules = [
         'name' => 'required|min:2|max:191',
         'email' => 'required|email',
         'address' => 'required',
-        'profile_image' => 'nullable'
+        'profile_image' => 'nullable|max:1024'
     ];
 
     public function render()
     {
         return view('livewire.contacts.create-contact');
+    }
+
+    public function updatedProfileImage()
+    {
+        $imageUrl = $this->profile_image->store('photos', 'public');
+        $this->image_url = $imageUrl;
     }
 
     public function save()
@@ -28,6 +39,13 @@ class CreateContact extends Component
         $contact = new Contact;
         $contact->fill($validatedData);
         $contact->save();
+
+        if($this->profile_image)
+        {
+            $contact->profile_image = $this->image_url;
+            $contact->save();
+        }
+        
 
         $this->emit('alert', [
             'title' => 'Added successfully',

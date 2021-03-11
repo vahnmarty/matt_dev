@@ -115,7 +115,7 @@
                                 </td>
                                 <td x-data="{ isOpen : false }"
                                     class="px-6 py-4 text-center text-sm font-medium">
-                                    <div class="relative flex justify-end items-center z-20">
+                                    <div class="relative flex justify-center items-center z-20">
                                         <button @click="isOpen = !isOpen"
                                                 type="button"
                                                 aria-has-popup="true"
