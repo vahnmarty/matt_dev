@@ -79,7 +79,7 @@
                             </svg>
                             @else
                             <img src="{{ url('storage/'.$image_url) }}"
-                                 class="object-fill w-32 h-32"
+                                 class="object-cover w-32 h-32"
                                  alt="">
                             @endif
                         </div>

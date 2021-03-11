@@ -105,12 +105,12 @@
                                 </td>
                                 <td class="px-0 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                     <div class="h-10 w-10">
-                                        <img class="h-10 w-10 rounded-full"
+                                        <img class="h-10 w-10 rounded-full object-cover"
                                              src="{{ $contact->profile_picture }}"
                                              alt="">
                                     </div>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-indigo-600">
                                     {{ $contact->name }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -121,11 +121,96 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                     {{ $contact->created_at->diffForHumans() }}
-
-
                                 </td>
-                                <td x-data="{ isOpen : false }"
+                                <td x-data="{ isOpen : false, viewModal: false }"
                                     class="px-6 py-4 text-center text-sm font-medium">
+
+                                    <div id="viewModal"
+                                         x-cloak
+                                         x-show="viewModal"
+                                         class="fixed z-10 inset-0 overflow-y-auto">
+                                        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                                            <div x-show="viewModal"
+                                                 x-transition:enter="ease-out duration-300"
+                                                 x-transition:enter-start="opacity-0"
+                                                 x-transition:enter-end="opacity-100"
+                                                 x-transition:leave="ease-in duration-200"
+                                                 x-transition:leave-start="opacity-100"
+                                                 x-transition:leave-end="opacity-0"
+                                                 class="fixed inset-0 transition-opacity"
+                                                 aria-hidden="true">
+                                                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+                                            </div>
+
+                                            <!-- This element is to trick the browser into centering the modal contents. -->
+                                            <span class="hidden sm:inline-block sm:align-middle sm:h-screen"
+                                                  aria-hidden="true">&#8203;</span>
+
+                                            <div x-show="viewModal"
+                                                 x-transition:enter="ease-out duration-300"
+                                                 x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                                 x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                                                 x-transition:leave="ease-in duration-200"
+                                                 x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                                                 x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                                 class=" px-4 pt-5 pb-4 inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-xl sm:w-full"
+                                                 role="dialog"
+                                                 aria-modal="true"
+                                                 aria-labelledby="modal-headline">
+                                                <div class="sm:flex sm:items-start">
+                                                    <div class="mx-auto flex-shrink-0 flex items-center justify-center h-32 w-32 rounded-full bg-red-100 sm:mx-0">
+                                                        <img class="h-32 w-32 rounded-full object-cover"
+                                                             src="{{ $contact->profile_picture }}"
+                                                             alt="">
+                                                    </div>
+                                                    <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                                        <dl class="grid grid-cols-1 gap-x-4 gap-y-4 sm:grid-cols-1">
+                                                            <div class="sm:col-span-1">
+                                                                <dt class="text-sm font-medium text-gray-400">
+                                                                    Full name
+                                                                </dt>
+                                                                <dd class="mt-1 text-base font-bold text-gray-900">
+                                                                    {{ $contact->name }}
+                                                                </dd>
+                                                            </div>
+                                                            <div class="sm:col-span-1">
+                                                                <dt class="text-sm font-medium text-gray-400">
+                                                                    Email
+                                                                </dt>
+                                                                <dd class="mt-1 text-base font-bold text-gray-900">
+                                                                    {{ $contact->email }}
+                                                                </dd>
+                                                            </div>
+
+                                                            <div class="sm:col-span-1">
+                                                                <dt class="text-sm font-medium text-gray-400">
+                                                                    Address
+                                                                </dt>
+                                                                <dd class="mt-1 text-base font-bold text-gray-900">
+                                                                    {{ $contact->address }}
+                                                                </dd>
+                                                            </div>
+                                                            <div class="sm:col-span-1">
+                                                                <dt class="text-sm font-medium text-gray-400">
+                                                                    Date Created
+                                                                </dt>
+                                                                <dd class="mt-1 text-base font-bold text-gray-900">
+                                                                    {{ $contact->created_at->format('F d Y h:i a') }}
+                                                                </dd>
+                                                            </div>
+                                                        </dl>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
+                                                    <button type="button"
+                                                            class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm">
+                                                        Close
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div class="relative flex justify-center items-center z-20">
                                         <button @click="isOpen = !isOpen"
                                                 type="button"
@@ -160,6 +245,7 @@
                                                  aria-labelledby="project-options-menu-0">
                                                 <div class="py-1">
                                                     <a href="#"
+                                                       x-on:click="viewModal = true"
                                                        class="group flex items-center px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
                                                        role="menuitem">
 
