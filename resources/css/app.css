@@ -1,0 +1,21 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/**
+|--------------------------------------------------
+| MENU
+|--------------------------------------------------
+*/
+
+.active-menu {
+    @apply bg-gray-100 text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md;
+}
+
+.normal-menu {
+    @apply text-white  group flex items-center px-2 py-2 text-sm font-medium rounded-md;
+}
+
+.normal-menu:hover {
+    @apply bg-gray-50 text-gray-900;
+}
