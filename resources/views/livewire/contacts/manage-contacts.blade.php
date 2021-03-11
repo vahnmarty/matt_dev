@@ -73,6 +73,10 @@
                                 </th>
                                 <th scope="col"
                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <span class="sr-only">Image</span>
+                                </th>
+                                <th scope="col"
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Name
                                 </th>
                                 <th scope="col"
@@ -98,6 +102,13 @@
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                     <input type="checkbox">
+                                </td>
+                                <td class="px-0 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                    <div class="h-10 w-10">
+                                        <img class="h-10 w-10 rounded-full"
+                                             src="{{ $contact->profile_picture }}"
+                                             alt="">
+                                    </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                     {{ $contact->name }}
