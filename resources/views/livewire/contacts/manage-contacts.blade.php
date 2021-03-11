@@ -63,156 +63,154 @@
                     </div>
 
                 </header>
-                <!-- This example requires Tailwind CSS v2.0+ -->
-                <div class="flex flex-col">
-                    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                        <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                            <div class="shadow overflow-hidden border-t border-gray-400">
-                                <table class="min-w-full divide-y divide-gray-200">
-                                    <thead class="bg-gray-50">
-                                        <tr>
-                                            <th scope="col"
-                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                <input type="checkbox">
-                                            </th>
-                                            <th scope="col"
-                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                Name
-                                            </th>
-                                            <th scope="col"
-                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                Email
-                                            </th>
-                                            <th scope="col"
-                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                Address
-                                            </th>
-                                            <th scope="col"
-                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                Created
-                                            </th>
-                                            <th scope="col"
-                                                class="relative px-6 py-3">
-                                                <span class="sr-only">Edit</span>
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="bg-white divide-y divide-gray-200">
-                                        @foreach($contacts as $contact)
-                                        <tr>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                                <input type="checkbox">
-                                            </td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                                {{ $contact->name }}
-                                            </td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                {{ $contact->email }}
-                                            </td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                {{ $contact->address }}
-                                            </td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                {{ $contact->created_at->diffForHumans() }}
+                <div class="align-middle inline-block min-w-full border border-gray-200">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col"
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <input type="checkbox">
+                                </th>
+                                <th scope="col"
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Name
+                                </th>
+                                <th scope="col"
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Email
+                                </th>
+                                <th scope="col"
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Address
+                                </th>
+                                <th scope="col"
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Created
+                                </th>
+                                <th scope="col"
+                                    class="relative px-6 py-3">
+                                    <span class="sr-only">Edit</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            @foreach($contacts as $contact)
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                    <input type="checkbox">
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                    {{ $contact->name }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    {{ $contact->email }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    {{ $contact->address }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    {{ $contact->created_at->diffForHumans() }}
 
 
-                                            </td>
-                                            <td x-data="{ isOpen : false }"
-                                                class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
-                                                <!-- This example requires Tailwind CSS v2.0+ -->
-                                                <div class="relative inline-block text-left">
-                                                    <div>
-                                                        <a href="#"
-                                                           @click="isOpen = !isOpen">
-                                                            <svg class="w-6 h-6"
-                                                                 xmlns="http://www.w3.org/2000/svg"
-                                                                 fill="none"
-                                                                 viewBox="0 0 24 24"
-                                                                 stroke="currentColor">
-                                                                <path stroke-linecap="round"
-                                                                      stroke-linejoin="round"
-                                                                      stroke-width="2"
-                                                                      d="M4 6h16M4 10h16M4 14h16M4 18h16" />
-                                                            </svg>
-                                                        </a>
-                                                    </div>
+                                </td>
+                                <td x-data="{ isOpen : false }"
+                                    class="px-6 py-4 text-center text-sm font-medium">
+                                    <div class="relative flex justify-end items-center z-20">
+                                        <button @click="isOpen = !isOpen"
+                                                type="button"
+                                                aria-has-popup="true"
+                                                type="button"
+                                                class="w-8 h-8 inline-flex items-center justify-center text-gray-400 rounded-full bg-transparent hover:text-gray-500 focus:outline-none focus:text-gray-500 focus:bg-gray-100 transition ease-in-out duration-150">
 
-                                                    <div x-show="isOpen"
-                                                         x-cloak
-                                                         @click.away="isOpen = false"
-                                                         x-transition:enter="transition ease-out duration-100"
-                                                         x-transition:enter-start="transform opacity-0 scale-95"
-                                                         x-transition:enter-end="transform opacity-100 scale-100"
-                                                         x-transition:leave="transition ease-in duration-75"
-                                                         x-transition:leave-start="transform opacity-100 scale-100"
-                                                         x-transition:leave-end="transform opacity-0 scale-95"
-                                                         class="origin-top-right absolute right-5 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none"
-                                                         role="menu"
-                                                         aria-orientation="vertical"
-                                                         aria-labelledby="options-menu">
-                                                        <div class="py-1"
-                                                             role="none">
-                                                            <a href="#"
-                                                               class="group flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                                               role="menuitem">
-                                                                <!-- Heroicon name: solid/pencil-alt -->
-                                                                <svg class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"
-                                                                     xmlns="http://www.w3.org/2000/svg"
-                                                                     viewBox="0 0 20 20"
-                                                                     fill="currentColor"
-                                                                     aria-hidden="true">
-                                                                    <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
-                                                                    <path fill-rule="evenodd"
-                                                                          d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
-                                                                          clip-rule="evenodd" />
-                                                                </svg>
-                                                                Edit
-                                                            </a>
-                                                            <a href="#"
-                                                               class="group flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                                               role="menuitem">
-                                                                <!-- Heroicon name: solid/duplicate -->
-                                                                <svg class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"
-                                                                     xmlns="http://www.w3.org/2000/svg"
-                                                                     viewBox="0 0 20 20"
-                                                                     fill="currentColor"
-                                                                     aria-hidden="true">
-                                                                    <path d="M7 9a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2H9a2 2 0 01-2-2V9z" />
-                                                                    <path d="M5 3a2 2 0 00-2 2v6a2 2 0 002 2V5h8a2 2 0 00-2-2H5z" />
-                                                                </svg>
-                                                                View
-                                                            </a>
-                                                        </div>
+                                            <svg class="w-5 h-5"
+                                                 xmlns="http://www.w3.org/2000/svg"
+                                                 fill="none"
+                                                 viewBox="0 0 24 24"
+                                                 stroke="currentColor">
+                                                <path stroke-linecap="round"
+                                                      stroke-linejoin="round"
+                                                      stroke-width="2"
+                                                      d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                                            </svg>
+                                        </button>
+                                        <div x-show="isOpen"
+                                             x-on:click.away="isOpen = false"
+                                             x-cloak
+                                             x-transition:enter="transition ease-out duration-100"
+                                             x-transition:enter-start="opacity-0 scale-95"
+                                             x-transition:enter-end="opacity-100 scale-100"
+                                             x-transition:leave="transition ease-in duration-75"
+                                             x-transition:leave-start="opacity-100 scale-100"
+                                             x-transition:leave-end="opacity-0 scale-95"
+                                             class="mx-3 origin-top-right absolute right-7 top-0 w-48 mt-1 rounded-md shadow-lg">
+                                            <div class="z-10 rounded-md bg-white shadow-xs"
+                                                 role="menu"
+                                                 aria-orientation="vertical"
+                                                 aria-labelledby="project-options-menu-0">
+                                                <div class="py-1">
+                                                    <a href="#"
+                                                       class="group flex items-center px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
+                                                       role="menuitem">
 
-                                                        <div class="py-1"
-                                                             role="none">
-                                                            <a href="#"
-                                                               class="group flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                                               role="menuitem">
-                                                                <!-- Heroicon name: solid/trash -->
-                                                                <svg class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"
-                                                                     xmlns="http://www.w3.org/2000/svg"
-                                                                     viewBox="0 0 20 20"
-                                                                     fill="currentColor"
-                                                                     aria-hidden="true">
-                                                                    <path fill-rule="evenodd"
-                                                                          d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                                                          clip-rule="evenodd" />
-                                                                </svg>
-                                                                Delete
-                                                            </a>
-                                                        </div>
-                                                    </div>
+                                                        <svg class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500 group-focus:text-gray-500"
+                                                             xmlns="http://www.w3.org/2000/svg"
+                                                             fill="none"
+                                                             viewBox="0 0 24 24"
+                                                             stroke="currentColor">
+                                                            <path stroke-linecap="round"
+                                                                  stroke-linejoin="round"
+                                                                  stroke-width="2"
+                                                                  d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                                                        </svg>
+
+                                                        View
+                                                    </a>
                                                 </div>
 
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+                                                <div class="py-1">
+                                                    <a href="#"
+                                                       class="group flex items-center px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
+                                                       role="menuitem">
+                                                        <!-- Heroicon name: pencil-alt -->
+                                                        <svg class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500 group-focus:text-gray-500"
+                                                             xmlns="http://www.w3.org/2000/svg"
+                                                             viewBox="0 0 20 20"
+                                                             fill="currentColor">
+                                                            <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+                                                            <path fill-rule="evenodd"
+                                                                  d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+                                                                  clip-rule="evenodd" />
+                                                        </svg>
+                                                        Edit
+                                                    </a>
+                                                </div>
+                                                <div class="border-t border-gray-100"></div>
+                                                <div class="py-1">
+                                                    <a onclick="deleteApp('{{ $contact->id }}')"
+                                                       href="#"
+                                                       class="group flex items-center px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
+                                                       role="menuitem">
+                                                        <!-- Heroicon name: trash -->
+                                                        <svg class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500 group-focus:text-gray-500"
+                                                             xmlns="http://www.w3.org/2000/svg"
+                                                             viewBox="0 0 20 20"
+                                                             fill="currentColor">
+                                                            <path fill-rule="evenodd"
+                                                                  d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                                                  clip-rule="evenodd" />
+                                                        </svg>
+                                                        Delete
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
                 <div class="py-6 px-6">
                     {{ $contacts->links() }}
