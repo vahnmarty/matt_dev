@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 
-
-Route::get('/contacts', Contacts\ManageContacts::class);
-
+Route::group(['prefix' => 'contacts'], function(){
+    Route::get('/', Contacts\ManageContacts::class);
+    Route::get('/create', Contacts\CreateContact::class);
+});

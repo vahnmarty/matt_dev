@@ -26,15 +26,4 @@
         )
     });
 
-    Livewire.on('test', param => {
-        alert(param);
-    });
-
-    Livewire.on('jsRedirect', params => {
-        setTimeout(() => {
-            window.location.replace(params['url']);
-        }, params['seconds'] || 1000);
-
-    });
-
 </script>
