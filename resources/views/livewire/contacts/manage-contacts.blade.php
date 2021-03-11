@@ -1,10 +1,10 @@
-<div x-data="{ createModal: false }"
-     x-on:closemodal.window="createModal = false"
-     class="py-12">
+<div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm rounded-sm border-2 border-gray-600">
             <div class="pt-6 bg-white">
-                <header class="px-6 pb-6 flex justify-between">
+                <header x-data="{ createModal: false }"
+                        x-on:closemodal.window="createModal = false"
+                        class="px-6 pb-6 flex justify-between">
 
                     <h1 class="font-bold text-3xl self-center">Contacts</h1>
 
@@ -114,10 +114,97 @@
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                                 {{ $contact->created_at->diffForHumans() }}
+
+
                                             </td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                <a href="#"
-                                                   class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                            <td x-data="{ isOpen : false }"
+                                                class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
+                                                <!-- This example requires Tailwind CSS v2.0+ -->
+                                                <div class="relative inline-block text-left">
+                                                    <div>
+                                                        <a href="#"
+                                                           @click="isOpen = !isOpen">
+                                                            <svg class="w-6 h-6"
+                                                                 xmlns="http://www.w3.org/2000/svg"
+                                                                 fill="none"
+                                                                 viewBox="0 0 24 24"
+                                                                 stroke="currentColor">
+                                                                <path stroke-linecap="round"
+                                                                      stroke-linejoin="round"
+                                                                      stroke-width="2"
+                                                                      d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                                                            </svg>
+                                                        </a>
+                                                    </div>
+
+                                                    <div x-show="isOpen"
+                                                         x-cloak
+                                                         @click.away="isOpen = false"
+                                                         x-transition:enter="transition ease-out duration-100"
+                                                         x-transition:enter-start="transform opacity-0 scale-95"
+                                                         x-transition:enter-end="transform opacity-100 scale-100"
+                                                         x-transition:leave="transition ease-in duration-75"
+                                                         x-transition:leave-start="transform opacity-100 scale-100"
+                                                         x-transition:leave-end="transform opacity-0 scale-95"
+                                                         class="origin-top-right absolute right-5 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none"
+                                                         role="menu"
+                                                         aria-orientation="vertical"
+                                                         aria-labelledby="options-menu">
+                                                        <div class="py-1"
+                                                             role="none">
+                                                            <a href="#"
+                                                               class="group flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                                                               role="menuitem">
+                                                                <!-- Heroicon name: solid/pencil-alt -->
+                                                                <svg class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"
+                                                                     xmlns="http://www.w3.org/2000/svg"
+                                                                     viewBox="0 0 20 20"
+                                                                     fill="currentColor"
+                                                                     aria-hidden="true">
+                                                                    <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+                                                                    <path fill-rule="evenodd"
+                                                                          d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+                                                                          clip-rule="evenodd" />
+                                                                </svg>
+                                                                Edit
+                                                            </a>
+                                                            <a href="#"
+                                                               class="group flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                                                               role="menuitem">
+                                                                <!-- Heroicon name: solid/duplicate -->
+                                                                <svg class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"
+                                                                     xmlns="http://www.w3.org/2000/svg"
+                                                                     viewBox="0 0 20 20"
+                                                                     fill="currentColor"
+                                                                     aria-hidden="true">
+                                                                    <path d="M7 9a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2H9a2 2 0 01-2-2V9z" />
+                                                                    <path d="M5 3a2 2 0 00-2 2v6a2 2 0 002 2V5h8a2 2 0 00-2-2H5z" />
+                                                                </svg>
+                                                                View
+                                                            </a>
+                                                        </div>
+
+                                                        <div class="py-1"
+                                                             role="none">
+                                                            <a href="#"
+                                                               class="group flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                                                               role="menuitem">
+                                                                <!-- Heroicon name: solid/trash -->
+                                                                <svg class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"
+                                                                     xmlns="http://www.w3.org/2000/svg"
+                                                                     viewBox="0 0 20 20"
+                                                                     fill="currentColor"
+                                                                     aria-hidden="true">
+                                                                    <path fill-rule="evenodd"
+                                                                          d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                                                          clip-rule="evenodd" />
+                                                                </svg>
+                                                                Delete
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
                                             </td>
                                         </tr>
                                         @endforeach

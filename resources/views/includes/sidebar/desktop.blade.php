@@ -5,8 +5,7 @@
             <div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
                 <div class="flex items-center flex-shrink-0 px-4">
                     <a href="{{ url('dashboard') }}">
-                        <img class="h-8 w-auto"
-                             src="{{ $app_logo_url }}">
+                        <h1 class="text-xl text-white font-bold">VanTzy: {{ date('Y-m-d') }}</h1>
                     </a>
                 </div>
                 <!-- Navigation -->
