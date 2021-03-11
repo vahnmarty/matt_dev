@@ -57,34 +57,37 @@
                                         </tr>
                                     </thead>
                                     <tbody class="bg-white divide-y divide-gray-200">
+                                        @foreach($contacts as $contact)
                                         <tr>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                                 <input type="checkbox">
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                                Jane Cooper
+                                                {{ $contact->name }}
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                Regional Paradigm Technician
+                                                {{ $contact->email }}
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                jane.cooper@example.com
+                                                {{ $contact->address }}
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                Admin
+                                                {{ $contact->created_at->diffForHumans() }}
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                                 <a href="#"
                                                    class="text-indigo-600 hover:text-indigo-900">Edit</a>
                                             </td>
                                         </tr>
-
-                                        <!-- More items... -->
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="py-6 px-6">
+                    {{ $contacts->links() }}
                 </div>
 
             </div>
