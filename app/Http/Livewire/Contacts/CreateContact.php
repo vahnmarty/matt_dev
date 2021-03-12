@@ -5,6 +5,8 @@ namespace App\Http\Livewire\Contacts;
 use Livewire\Component;
 use App\Models\Contact;
 use Livewire\WithFileUploads;
+use App\Mail\ContactCreated;
+use Mail;
 
 class CreateContact extends Component
 {
@@ -45,6 +47,8 @@ class CreateContact extends Component
             $contact->profile_image = $this->image_url;
             $contact->save();
         }
+
+        Mail::to($contact->email)->send(new ContactCreated($contact));
         
 
         $this->emit('alert', [

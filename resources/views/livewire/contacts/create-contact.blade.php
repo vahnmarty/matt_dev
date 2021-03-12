@@ -70,6 +70,7 @@
                         </div>
                         <label for="file-upload"
                                class="mt-2 relative cursor-pointer bg-gray-100 rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                            <x-loading target="profile_image" />
                             <span>Upload a file</span>
                             <input id="file-upload"
                                    wire:model="profile_image"
@@ -90,6 +91,7 @@
                 </button>
                 <button type="submit"
                         class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    <x-loading target="save" />
                     Save Changes
                 </button>
             </div>
