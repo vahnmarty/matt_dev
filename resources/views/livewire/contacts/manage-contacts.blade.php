@@ -325,7 +325,7 @@
                                                 </div>
                                                 <div class="border-t border-gray-100"></div>
                                                 <div class="py-1">
-                                                    <a onclick="deleteApp('{{ $contact->id }}')"
+                                                    <a onclick="deleteContact('{{ $contact->id }}')"
                                                        href="#"
                                                        class="group flex items-center px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
                                                        role="menuitem">
@@ -359,3 +359,21 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+<script>
+    function deleteContact($id) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                @this.deleteContact($id);
+            }
+        })
+    }
+</script>
+@endpush

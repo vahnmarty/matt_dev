@@ -68,8 +68,8 @@
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
             defer></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    @livewireScripts
     @stack('scripts')
+    @livewireScripts
     @include('includes.listeners')
 </body>
 

@@ -33,4 +33,15 @@ class ManageContacts extends Component
         //$this->dispatchBrowserEvent('editmodal');
     }
 
+    public function deleteContact($id)
+    {
+        Contact::destroy($id);
+
+        $this->emit('alert', [
+            'title' => 'Contact deleted!',
+            'message' => 'Contact has been deleted successfully',
+            'type' => 'success'
+        ]);
+    }
+
 }
