@@ -2,11 +2,11 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm rounded-sm border-2 border-gray-600">
             <div class="pt-6 bg-white">
-                <header x-data="{ createModal: false }"
-                        x-on:closemodal.window="createModal = false"
+                <header x-data="{ createModal: false, editModal : @entangle('edit_id') }"
+                        x-on:closemodal.window="createModal = false; editModal = false"
                         class="px-6 pb-6 flex justify-between">
 
-                    <h1 class="font-bold text-3xl self-center">Contacts</h1>
+                    <h1 class="font-bold text-3xl self-center">Contacts <span x-text="editModal"></span></h1>
 
 
                     <button x-on:click="createModal = !createModal"
@@ -24,7 +24,6 @@
                         Add Contact
                     </button>
 
-                    <!-- This example requires Tailwind CSS v2.0+ -->
                     <div id="createModal"
                          x-cloak
                          x-show="createModal"
@@ -47,6 +46,7 @@
                                   aria-hidden="true">&#8203;</span>
 
                             <div x-show="createModal"
+                                 @click.away="createModal = false"
                                  x-transition:enter="ease-out duration-300"
                                  x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                                  x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
@@ -60,6 +60,45 @@
                                 @livewire('contacts.create-contact')
                             </div>
                         </div>
+                    </div>
+
+                    @if($edit_id)
+                    <div id="editModal"
+                         x-cloak
+                         x-show="editModal"
+                         class="fixed z-10 inset-0 overflow-y-auto">
+                        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                            <div x-show="editModal"
+                                 x-transition:enter="ease-out duration-300"
+                                 x-transition:enter-start="opacity-0"
+                                 x-transition:enter-end="opacity-100"
+                                 x-transition:leave="ease-in duration-200"
+                                 x-transition:leave-start="opacity-100"
+                                 x-transition:leave-end="opacity-0"
+                                 class="fixed inset-0 transition-opacity"
+                                 aria-hidden="true">
+                                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+                            </div>
+
+                            <!-- This element is to trick the browser into centering the modal contents. -->
+                            <span class="hidden sm:inline-block sm:align-middle sm:h-screen"
+                                  aria-hidden="true">&#8203;</span>
+
+                            <div x-show="editModal"
+                                 x-transition:enter="ease-out duration-300"
+                                 x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                 x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                                 x-transition:leave="ease-in duration-200"
+                                 x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                                 x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                 class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full"
+                                 role="dialog"
+                                 aria-modal="true"
+                                 aria-labelledby="modal-headline">
+                                @livewire('contacts.edit-contact', ['id' => $edit_id])
+                            </div>
+                        </div>
+                        @endif
                     </div>
 
                 </header>
@@ -267,6 +306,8 @@
 
                                                 <div class="py-1">
                                                     <a href="#"
+                                                       x-on:click="isOpen = false"
+                                                       wire:click="editContact('{{ $contact->id }}')"
                                                        class="group flex items-center px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
                                                        role="menuitem">
                                                         <!-- Heroicon name: pencil-alt -->

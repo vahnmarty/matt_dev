@@ -13,6 +13,8 @@ class ManageContacts extends Component
 
     protected $listeners = ['resetComponent'];
     
+    public $edit_id;
+
     public function render()
     {
         $contacts = Contact::latest()->paginate(5);
@@ -22,6 +24,13 @@ class ManageContacts extends Component
     public function resetComponent()
     {
         $this->resetPage();
+    }
+
+    public function editContact($id)
+    {
+        $this->edit_id = $id;
+
+        //$this->dispatchBrowserEvent('editmodal');
     }
 
 }

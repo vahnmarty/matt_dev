@@ -1,12 +1,11 @@
 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-
-    <form wire:submit.prevent="save"
+    <form wire:submit.prevent="update"
           class="space-y-8 divide-y divide-gray-200">
         <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
             <div class="space-y-6 sm:space-y-5">
                 <div class="mb-8">
                     <h3 class="text-lg leading-6 font-medium text-gray-900">
-                        Create Contact
+                        Edit Contact xxzz {{ $name }}
                     </h3>
                 </div>
                 <div class="grid grid-cols-3">
@@ -68,10 +67,10 @@
                                  alt="">
                             @endif
                         </div>
-                        <label for="file-upload"
+                        <label for="file-edit-upload"
                                class="mt-2 relative cursor-pointer bg-gray-100 rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                             <span>Upload a file</span>
-                            <input id="file-upload"
+                            <input id="file-edit-upload"
                                    wire:model="profile_image"
                                    type="file"
                                    class="sr-only">
@@ -83,7 +82,7 @@
 
         <div class="pt-5">
             <div class="flex justify-end">
-                <button x-on:click="createModal = false"
+                <button x-on:click="editModal = false"
                         type="button"
                         class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Cancel
